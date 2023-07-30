@@ -21,7 +21,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex flex-col justify-between min-h-screen">
           <Header />
-          <div className="fixed top-0 h-screen right-0">sidebar</div>
           {children}
           <Footer />
         </div>

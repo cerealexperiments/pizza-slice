@@ -6,6 +6,9 @@ type PizzaSizeType = {
 };
 
 type PizzaType = {
+  slug: {
+    current: string;
+  };
   title: string;
   description: string;
   image: string;

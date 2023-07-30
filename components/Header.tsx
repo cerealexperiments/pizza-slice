@@ -1,4 +1,4 @@
-import { ShoppingBagIcon } from "@heroicons/react/24/outline";
+import CartMenu from "@/components/CartMenu";
 export default function Header() {
   return (
     <header className="border">
@@ -6,7 +6,7 @@ export default function Header() {
         <h1 className="text-2xl font-bold">
           Pizza<span className="text-red-500">Slice</span>
         </h1>
-        <ShoppingBagIcon className="h-6" />
+        <CartMenu />
       </div>
     </header>
   );

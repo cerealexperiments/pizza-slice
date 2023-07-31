@@ -1,20 +1,7 @@
 import { client } from "@/lib/sanity";
+import { Pizza } from "@/lib/types";
 
-type PizzaSizeType = {
-  sizeTitle: string;
-  sizePrice: number;
-};
-
-type PizzaType = {
-  slug: {
-    current: string;
-  };
-  title: string;
-  description: string;
-  image: string;
-  sizes: PizzaSizeType[];
-  ingredients: string[];
-};
+type PizzaType = Omit<Pizza, "slug"> & { slug: { current: string } };
 
 export const getAllPizzas = async () => {
   return await client.fetch<PizzaType[]>(`*[_type == "pizza"]`);

@@ -10,29 +10,25 @@ export default function Home() {
   const { data, isLoading, error } = useSWR("all pizzas", getAllPizzas);
   const products = useStore((state) => state.products);
   console.log(products);
-  const loadingProducts = Array.from({ length: 8 }, (_, index) => (
+  const skeletons = Array.from({ length: 8 }, (_, index) => (
     <PizzaCardSkeleton key={index} />
   ));
-  if (error) return <div>error occurred</div>;
   const pizzas = data
     ? data.map((item) => {
         return {
           ...item,
           slug: item.slug.current,
-          size: item.sizes[0].sizeTitle,
-          price: item.sizes[0].sizePrice,
           image: item.image ? urlFor(item.image).url() : null,
         };
       })
     : null;
   console.log(data);
-  console.log(pizzas);
 
   return (
     <main className="max-w-screen-xl flex-1 mx-auto border-x w-full">
       <div className="py-8 px-4 mx-auto flex flex-wrap justify-center gap-7 gap-y-8 md:mx-none">
         {isLoading
-          ? loadingProducts
+          ? skeletons
           : pizzas
           ? pizzas.map((pizza) => (
               <PizzaCard
@@ -40,7 +36,8 @@ export default function Home() {
                 slug={pizza.slug}
                 title={pizza.title}
                 image={pizza.image}
-                size={pizza.size}
+                ingredients={pizza.ingredients}
+                sizes={pizza.sizes}
                 description={pizza.description}
                 price={pizza.sizes[0].sizePrice}
               />

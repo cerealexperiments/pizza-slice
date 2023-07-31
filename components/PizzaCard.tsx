@@ -8,24 +8,17 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/state/store";
-
-type PizzaCardProps = {
-  slug: string;
-  title: string;
-  image: string;
-  description: string;
-  price: number;
-  size: string;
-};
+import PizzaDialog from "@/components/PizzaDialog";
+import { Pizza } from "@/lib/types";
 
 export default function PizzaCard({
   slug,
   title,
   image,
   description,
-  price,
-  size,
-}: PizzaCardProps) {
+  ingredients,
+  sizes,
+}: Pizza) {
   const { products, addProduct } = useStore((state) => state);
   const added = !!products.find((item) => item.slug === slug);
   return (
@@ -38,9 +31,14 @@ export default function PizzaCard({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardFooter className="flex justify-between mt-auto">
-        <Button className="text-gray-700" variant="outline" size="sm">
-          Подробнее
-        </Button>
+        <PizzaDialog
+          slug={slug}
+          title={title}
+          image={image}
+          description={description}
+          sizes={sizes}
+          ingredients={ingredients}
+        />
         <Button
           onClick={() =>
             !added
@@ -49,8 +47,8 @@ export default function PizzaCard({
                   title,
                   image,
                   description,
-                  price,
-                  size,
+                  price: sizes[0].sizePrice,
+                  size: sizes[0].sizeTitle,
                   quantity: 1,
                 })
               : console.log("product already added")

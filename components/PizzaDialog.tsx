@@ -32,13 +32,11 @@ export default function PizzaDialog({
   const [selectedSize, setSelectedSize] = useState(sizes[0].sizeTitle);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [excludedIngredients, setExcludedIngredients] = useState([]);
-  console.log(excludedIngredients);
+  const price = sizes[selectedSizeIndex].sizePrice;
   return (
     <Dialog>
-      <DialogTrigger>
-        <Button className="text-gray-700" variant="outline" size="sm">
-          Подробнее
-        </Button>
+      <DialogTrigger className="text-gray-700 border rounded-md hover:bg-gray-50 transition-colors text-sm font-medium px-4 py-1.5">
+        Подробнее
       </DialogTrigger>
       <DialogContent className="w-fit px-12 sm:px-6 sm:w-full sm:grid sm:grid-cols-2 gap-12 max-w-2xl">
         <img className="flex-1 max-w-[300px] mx-auto" src={image} alt="" />
@@ -101,8 +99,8 @@ export default function PizzaDialog({
                       title,
                       image,
                       description,
-                      price: sizes[0].sizePrice,
-                      size: sizes[0].sizeTitle,
+                      price: price,
+                      size: selectedSize,
                       quantity: 1,
                     })
                   : console.log("product already added")
@@ -114,7 +112,7 @@ export default function PizzaDialog({
                 {!added ? "В корзину" : "В корзине"}
               </span>
             </Button>
-            <span className="whitespace-nowrap font-medium ">
+            <span className="whitespace-nowrap font-medium">
               {sizes[selectedSizeIndex].sizePrice}{" "}
               <span className="font-normal">c</span>
             </span>

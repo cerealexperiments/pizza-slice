@@ -3,6 +3,6 @@ import { Pizza } from "@/lib/types";
 
 type PizzaType = Omit<Pizza, "slug"> & { slug: { current: string } };
 
-export const getAllPizzas = async () => {
-  return await client.fetch<PizzaType[]>(`*[_type == "pizza"]`);
+export const getProductsByCategory = async (category: string) => {
+  return await client.fetch<PizzaType[]>(`*[_type == "${category}"]`);
 };

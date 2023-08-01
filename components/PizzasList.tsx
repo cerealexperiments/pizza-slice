@@ -26,7 +26,6 @@ export default function PizzasList({ isLoading, pizzas }: PizzasListProps) {
               ingredients={pizza.ingredients}
               sizes={pizza.sizes}
               description={pizza.description}
-              price={pizza.sizes[0].sizePrice}
             />
           ))
         : null}

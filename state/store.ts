@@ -41,7 +41,6 @@ export const useStore = create<ProductsStore>((set) => ({
       const foundProduct = state.products.find(
         (item) => item.slug === product.slug
       );
-      foundProduct.quantity = quantity;
       return { products: [...state.products] };
     });
   },

@@ -31,7 +31,7 @@ export default function PizzaDialog({
   const added = !!products.find((item) => item.slug === slug);
   const [selectedSize, setSelectedSize] = useState(sizes[0].sizeTitle);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
-  const [excludedIngredients, setExcludedIngredients] = useState([]);
+  const [excludedIngredients, setExcludedIngredients] = useState<string[]>([]);
   const price = sizes[selectedSizeIndex].sizePrice;
   return (
     <Dialog>

@@ -40,11 +40,11 @@ export default function CategoriesSelector({
         <button
           key={category.value}
           value={category.value}
-          className="flex flex-col justify-center gap-2 items-center hover:scale-110 transition-transform"
+          className="flex flex-col group justify-center gap-2 items-center hover:scale-110 transition-transform"
           onClick={(event) => setCategoryFilter(event.currentTarget.value)}
         >
           {category.icon}
-          <span className="text-gray-700 font-medium hover:text-rose-500 transition-colors">
+          <span className="text-gray-700 font-medium group-hover:text-rose-500 transition-colors">
             {category.title}
           </span>
         </button>

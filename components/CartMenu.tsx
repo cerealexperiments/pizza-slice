@@ -1,29 +1,30 @@
 "use client";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { useStore } from "@/state/store";
 
 export default function CartMenu() {
-  const products = useStore((state) => state.products);
+  const { products, removeProduct } = useStore((state) => state);
   return (
-    <Dialog>
-      <DialogTrigger>
+    <Sheet>
+      <SheetTrigger>
         <ShoppingBagIcon className="h-6" />
-      </DialogTrigger>
-      <DialogContent className="max-w-xl w-full">
-        <DialogHeader>
-          <DialogTitle className="mb-2">Корзина</DialogTitle>
-          <DialogDescription>
+      </SheetTrigger>
+      <SheetContent className="max-w-screen-xl sm:max-w-lg w-full">
+        <SheetHeader>
+          <SheetTitle className="mb-2">Корзина</SheetTitle>
+          <SheetDescription className="pb-4">
             {products.length > 0 ? "Продукты в корзине:" : "Корзина пуста"}
-          </DialogDescription>
-        </DialogHeader>
+          </SheetDescription>
+        </SheetHeader>
         <div>
           {products.length > 0 && (
             <ul
@@ -46,7 +47,7 @@ export default function CartMenu() {
                         <h4 className="text-sm">
                           <a
                             href={product.slug}
-                            className="font-medium text-gray-700 hover:text-gray-800"
+                            className="font-medium text-gray-800 hover:text-gray-800"
                           >
                             {product.title}
                           </a>
@@ -55,8 +56,12 @@ export default function CartMenu() {
                           {product.price} сом
                         </p>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500">
-                        {product.size}
+                      <p className="mt-1 text-sm text-gray-500 w-4/5">
+                        {product.description}
+                      </p>
+                      <p className="mt-2 text-sm text-gray-500">
+                        Размер:{" "}
+                        <span className="text-gray-600">{product.size}</span>
                       </p>
                     </div>
 
@@ -67,6 +72,7 @@ export default function CartMenu() {
                       <div className="ml-4">
                         <button
                           type="button"
+                          onClick={() => removeProduct(product)}
                           className="text-sm font-medium text-rose-500 hover:text-rose-600 transition-colors"
                         >
                           <span>Удалить</span>
@@ -79,7 +85,7 @@ export default function CartMenu() {
             </ul>
           )}
         </div>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 }

@@ -38,14 +38,14 @@ export default function PizzaDialog({
       <DialogTrigger className="text-gray-700 border rounded-md hover:bg-gray-50 transition-colors text-sm font-medium px-4 py-1.5">
         Подробнее
       </DialogTrigger>
-      <DialogContent className="w-fit px-12 sm:px-6 sm:w-full sm:grid sm:grid-cols-2 gap-12 max-w-2xl">
+      <DialogContent className="w-fit px-12 sm:px-6 sm:w-full sm:grid sm:grid-cols-2 gap-12 max-w-3xl">
         <img className="flex-1 max-w-[300px] mx-auto" src={image} alt="" />
         <div>
-          <DialogTitle className="mb-2 text-2xl font-semibold tracking-tight">
+          <DialogTitle className="mb-2 text-2xl font-medium tracking-tight">
             {title}
           </DialogTitle>
           <DialogDescription className="mb-4">{description}</DialogDescription>
-          <p className="mt-4 mb-2 font-medium">Размер</p>
+          <p className="mt-4 mb-2 text-gray-700 font-medium">Размер</p>
           <Select
             defaultValue={selectedSize}
             onValueChange={(value) => {
@@ -69,7 +69,7 @@ export default function PizzaDialog({
               </SelectGroup>
             </SelectContent>
           </Select>
-          <p className="mt-4 mb-2 font-medium">Ингридиенты</p>
+          <p className="mt-4 mb-2 text-gray-700 font-medium">Ингридиенты</p>
           <div className="flex gap-2">
             {ingredients.map((item) => (
               <Toggle

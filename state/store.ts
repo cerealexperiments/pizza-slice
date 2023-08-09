@@ -1,20 +1,11 @@
 import { create } from "zustand";
-
-type ProductType = {
-  slug: string;
-  title: string;
-  description: string;
-  quantity: number;
-  image: string;
-  price: number;
-  size: string;
-};
+import { CartProduct } from "@/lib/types";
 
 type ProductsStore = {
-  products: ProductType[];
-  addProduct: (product: ProductType) => void;
-  removeProduct: (product: ProductType) => void;
-  changeProductQuantity: (product: ProductType, quantity: number) => void;
+  products: CartProduct[];
+  addProduct: (product: CartProduct) => void;
+  removeProduct: (product: CartProduct) => void;
+  changeProductQuantity: (product: CartProduct, quantity: number) => void;
 };
 
 export const useStore = create<ProductsStore>((set) => ({
@@ -41,6 +32,8 @@ export const useStore = create<ProductsStore>((set) => ({
       const foundProduct = state.products.find(
         (item) => item.slug === product.slug
       );
+      foundProduct.quantity = quantity;
+
       return { products: [...state.products] };
     });
   },

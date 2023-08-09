@@ -35,16 +35,16 @@ export default function CategoriesSelector({
   setCategoryFilter,
 }: CategoriesSelectorProps) {
   return (
-    <div className="flex gap-12 justify-center rounded-md border mt-8 px-6 py-4">
+    <div className="grid grid-cols-3 gap-12 justify-center  px-6 py-4">
       {categories.map((category) => (
         <button
           key={category.value}
           value={category.value}
-          className="flex flex-col group justify-center gap-2 items-center hover:scale-110 transition-transform"
+          className="flex flex-col group max-w-32 justify-center gap-2 items-center hover:scale-110 transition-transform"
           onClick={(event) => setCategoryFilter(event.currentTarget.value)}
         >
           {category.icon}
-          <span className="text-gray-700 font-medium group-hover:text-rose-500 transition-colors">
+          <span className="text-gray-700  group-hover:text-rose-500 transition-colors">
             {category.title}
           </span>
         </button>

@@ -64,7 +64,7 @@ export default function Footer() {
     <footer className="bg-white border-t">
       <div className="mx-auto max-w-screen-xl overflow-hidden px-6 py-14 sm:py-16 lg:px-8">
         <nav
-          className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
+          className="-mb-6 columns-1 sm:flex sm:justify-center sm:space-x-12"
           aria-label="Footer"
         >
           {navigation.main.map((item) => (
@@ -78,7 +78,7 @@ export default function Footer() {
             </div>
           ))}
         </nav>
-        <div className="mt-10 flex justify-center space-x-10">
+        <div className="mt-10 flex sm:justify-center space-x-10">
           {navigation.social.map((item) => (
             <a
               key={item.name}
@@ -90,7 +90,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="mt-10 text-center text-xs leading-5 text-gray-500">
+        <p className="mt-10 sm:text-center text-xs leading-5 text-gray-500">
           &copy; 2023 Placeholder, Inc. All rights reserved.
         </p>
       </div>

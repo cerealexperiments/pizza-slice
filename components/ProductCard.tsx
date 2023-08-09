@@ -8,23 +8,22 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/state/store";
-import PizzaDialog from "@/components/PizzaDialog";
-import { Pizza } from "@/lib/types";
+import { Product } from "@/lib/types";
+import ProductDialog from "./ProductDialog";
 
-export default function PizzaCard({
+export default function ProductCard({
   slug,
   title,
   image,
   description,
-  ingredients,
-  sizes,
-}: Pizza) {
+  price,
+}: Product) {
   const { products, addProduct } = useStore((state) => state);
   const added = !!products.find((item) => item.slug === slug);
   return (
     <Card className="max-w-[350px] pt-4 xl:max-w-[290px] border flex flex-col">
       <CardContent>
-        <img src={image} alt={`${title} image`} />
+        <img className="aspect-square" src={image} alt={`${title} image`} />
       </CardContent>
       <CardHeader className="pb-4">
         <CardTitle className="font-medium">{title}</CardTitle>
@@ -32,16 +31,15 @@ export default function PizzaCard({
       </CardHeader>
       <CardFooter className="mt-auto flex-col items-start">
         <p className="mb-4 font-medium text-gray-700">
-          <span className="font-normal">от</span> {sizes[0].sizePrice} с.
+          <span className="font-normal">от</span> {price} с.
         </p>
         <div className="flex justify-between w-full">
-          <PizzaDialog
+          <ProductDialog
             slug={slug}
             title={title}
             image={image}
-            description={description}
-            sizes={sizes}
-            ingredients={ingredients}
+            price={price}
+            description={description ? description : "something"}
           />
           <Button
             onClick={() =>
@@ -51,8 +49,7 @@ export default function PizzaCard({
                     title,
                     image,
                     description,
-                    price: sizes[0].sizePrice,
-                    size: sizes[0].sizeTitle,
+                    price,
                     quantity: 1,
                   })
                 : console.log("product already added")

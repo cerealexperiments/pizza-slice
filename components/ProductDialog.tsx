@@ -23,8 +23,10 @@ export default function ProductDialog({
       <DialogTrigger className="text-gray-700 border rounded-md hover:bg-gray-50 transition-colors text-sm font-medium px-4 py-1.5">
         Подробнее
       </DialogTrigger>
-      <DialogContent className="w-fit px-12 sm:px-6 sm:w-full sm:grid sm:grid-cols-2 gap-12 max-w-3xl">
-        <img className="flex-1 max-w-[300px] mx-auto" src={image} alt="" />
+      <DialogContent className="w-fit px-12 sm:px-6 sm:grid sm:grid-cols-2 gap-12 w-[90vw] max-w-3xl">
+        <div className="flex-1 flex items-center max-w-[300px] mx-auto">
+          <img src={image} alt="" />
+        </div>
         <div className="flex flex-col">
           <DialogTitle className="mb-2 text-2xl font-medium tracking-tight">
             {title}

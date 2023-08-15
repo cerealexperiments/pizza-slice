@@ -22,7 +22,7 @@ export default function PizzaCard({
   const { products, addProduct } = useStore((state) => state);
   const added = !!products.find((item) => item.slug === slug);
   return (
-    <Card className="max-w-[350px] pt-4 xl:max-w-[290px] border flex flex-col">
+    <Card className="max-w-[350px] pt-4 xl:max-w-[290px] border-none shadow-custom flex flex-col">
       <CardContent>
         <img src={image} alt={`${title} image`} />
       </CardContent>

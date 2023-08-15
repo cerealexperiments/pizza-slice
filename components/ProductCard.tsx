@@ -21,7 +21,7 @@ export default function ProductCard({
   const { products, addProduct } = useStore((state) => state);
   const added = !!products.find((item) => item.slug === slug);
   return (
-    <Card className="max-w-[350px] pt-4 xl:max-w-[290px] border flex flex-col">
+    <Card className="max-w-[350px] pt-4 xl:max-w-[290px] border-0 rounded flex flex-col">
       <CardContent>
         <img className="aspect-square" src={image} alt={`${title} image`} />
       </CardContent>

@@ -6,6 +6,7 @@ import { useState } from "react";
 import PizzasList from "@/components/PizzasList";
 import CategoryTabs from "@/components/CategoryTabs";
 import ProductsList from "@/components/ProductsList";
+import FeaturedProducts from "@/components/FeaturedProducts";
 
 export default function Home() {
   const [categoryFilter, setCategoryFilter] = useState("pizza");
@@ -48,7 +49,7 @@ export default function Home() {
   console.log(productCategories);
 
   return (
-    <main className="max-w-screen-xl flex-1 mx-auto  w-full">
+    <main className="max-w-screen-xl flex-1 mx-auto  w-full px-8 xl:px-0">
       {productCategoriesQuery.data && (
         <CategoryTabs
           categories={productCategories}

@@ -13,7 +13,7 @@ const skeletons = Array.from({ length: 8 }, (_, index) => (
 
 export default function PizzasList({ isLoading, pizzas }: PizzasListProps) {
   return (
-    <div className="py-8 px-4 mx-auto flex flex-wrap justify-center xl:justify-start gap-7 gap-y-8 md:mx-none">
+    <div className="py-8  mx-auto flex flex-wrap justify-center xl:justify-start gap-7 gap-y-8 md:mx-none">
       {isLoading
         ? skeletons
         : pizzas

@@ -30,9 +30,6 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      boxShadow: {
-        custom: "rgba(0, 0, 0, 0.16) 0px 1px 4px;",
-      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms")],

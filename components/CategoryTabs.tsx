@@ -23,7 +23,11 @@ export default function CategoryTabs({
       <TabsList>
         {categories
           ? categories.map((item) => (
-              <TabsTrigger key={item.value} value={item.value}>
+              <TabsTrigger
+                className="font-semibold"
+                key={item.value}
+                value={item.value}
+              >
                 {item.title}
               </TabsTrigger>
             ))

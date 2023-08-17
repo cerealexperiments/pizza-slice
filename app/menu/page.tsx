@@ -54,6 +54,7 @@ export default function MenuPage() {
     : null;
   return (
     <main className="max-w-screen-xl flex-1 mx-auto w-full px-8 xl:px-0">
+      <h3 className="text-3xl mt-8 mb-8 font-medium">Наше меню</h3>
       {productCategoriesQuery.data && (
         <CategoryTabs
           categories={productCategories}

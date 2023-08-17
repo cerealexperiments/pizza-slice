@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useStore } from "@/state/store";
 import { Product } from "@/lib/types";
 import ProductDialog from "./ProductDialog";
+import { Badge } from "@/components/ui/badge";
 
 export default function ProductCard({
   slug,
@@ -30,7 +31,7 @@ export default function ProductCard({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardFooter className="mt-auto flex-col items-start">
-        <p className="mb-4 font-medium text-gray-700">
+        <p className="mb-4 font-semibold text-gray-700">
           <span className="font-normal">от</span> {price} с.
         </p>
         <div className="flex justify-between w-full">

@@ -10,6 +10,7 @@ import {
 
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { useStore } from "@/state/store";
+import Link from "next/link";
 
 export default function CartMenu() {
   const { products, removeProduct, changeProductQuantity } = useStore(
@@ -136,12 +137,12 @@ export default function CartMenu() {
                 Стоимость заказа без учета доставки
               </p>
               <div className="mt-6">
-                <a
-                  href="#"
+                <Link
+                  href="/checkout"
                   className="flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
                 >
                   К оплате
-                </a>
+                </Link>
               </div>
             </div>
           </div>

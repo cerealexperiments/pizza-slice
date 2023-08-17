@@ -31,7 +31,7 @@ export default function PizzaCard({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardFooter className="mt-auto flex-col items-start">
-        <p className="mb-4 font-medium text-gray-700">
+        <p className="mb-4 font-semibold text-gray-700">
           <span className="font-normal">от</span> {sizes[0].sizePrice} с.
         </p>
         <div className="flex justify-between w-full">

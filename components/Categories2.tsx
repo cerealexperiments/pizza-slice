@@ -19,8 +19,8 @@ export default function Categories2({ categories }: Categories2Props) {
       className="space-y-6 py-6 md:pt-10 lg:pt-24"
     >
       <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-        <h2 className="text-3xl font-bold leading-[1.1] text-gray-800 sm:text-3xl md:text-5xl">
-          Наши Категории
+        <h2 className="text-2xl font-bold leading-[1.1] text-gray-800 sm:text-3xl md:text-4xl">
+          Категории
         </h2>
         <Balance className="max-w-[46rem] leading-normal text-gray-800 text-muted-foreground sm:text-lg sm:leading-7">
           Наше главное преимущество – разнообразие (чего...)
@@ -46,7 +46,7 @@ export default function Categories2({ categories }: Categories2Props) {
                 />
               </AspectRatio>
               <div className="absolute inset-0 z-20 flex items-center justify-center">
-                <h3 className="text-3xl font-medium capitalize text-slate-100 md:text-2xl">
+                <h3 className="text-3xl font-semibold capitalize text-slate-100 md:text-2xl">
                   {category.title}
                 </h3>
               </div>

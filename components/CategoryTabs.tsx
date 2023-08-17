@@ -1,4 +1,5 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useEffect } from "react";
 
 type CategoryTabsProps = {
   categories:
@@ -7,17 +8,24 @@ type CategoryTabsProps = {
         value: string;
       }[]
     | null;
+  defaultCategory: string | null;
   changeCategoryFilter: (categoryFilter: string) => void;
 };
 
 export default function CategoryTabs({
   categories,
   changeCategoryFilter,
+  defaultCategory,
 }: CategoryTabsProps) {
+  const defaultValue = categories
+    ?.map((item) => item.value)
+    .includes(defaultCategory!)
+    ? defaultCategory
+    : "pizza";
   return (
     <Tabs
       onValueChange={(value) => changeCategoryFilter(value)}
-      defaultValue="pizza"
+      defaultValue={defaultValue!}
       className="max-w-[400px] mt-6"
     >
       <TabsList>

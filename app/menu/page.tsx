@@ -6,14 +6,16 @@ import {
   PizzaType,
 } from "@/lib/data";
 import { urlFor } from "@/lib/sanity";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PizzasList from "@/components/PizzasList";
 import CategoryTabs from "@/components/CategoryTabs";
 import ProductsList from "@/components/ProductsList";
 import { Product } from "@/lib/types";
+import { useSearchParams } from "next/navigation";
 
 export default function MenuPage() {
   const [categoryFilter, setCategoryFilter] = useState("pizza");
+  const searchParams = useSearchParams();
   const productsQuery = useSWR(categoryFilter, () =>
     getProductsByCategory(categoryFilter)
   );
@@ -21,6 +23,7 @@ export default function MenuPage() {
     "productCategories",
     getProductCategories
   );
+  const category = searchParams.get("category");
   const pizzas =
     categoryFilter === "pizza" && productsQuery.data
       ? productsQuery.data?.map((item) => {
@@ -52,11 +55,20 @@ export default function MenuPage() {
         };
       })
     : null;
+  useEffect(() => {
+    if (
+      category &&
+      productCategories?.map((item) => item.value).includes(category)
+    ) {
+      setCategoryFilter(category);
+    }
+  }, [category]);
   return (
     <main className="max-w-screen-xl flex-1 mx-auto w-full px-8 xl:px-0">
-      <h3 className="text-3xl mt-8 mb-8 font-medium">Наше меню</h3>
+      <h3 className="text-3xl mt-8 mb-8 font-semibold">Наше меню</h3>
       {productCategoriesQuery.data && (
         <CategoryTabs
+          defaultCategory={searchParams.get("category")}
           categories={productCategories}
           changeCategoryFilter={setCategoryFilter}
         />

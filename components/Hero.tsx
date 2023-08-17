@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Balance from "react-wrap-balancer";
 
 export default function Hero() {
   return (
@@ -23,13 +24,15 @@ export default function Hero() {
         </div>
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Добро пожаловать в Pizza Slice
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl px-8">
+              <Balance>Добро пожаловать в Pizza Slice</Balance>
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
-              У нас вы найдете более 10 различных видов пиццы, которые вы можете
-              приобрести по кусочкам (слайсам), а также сочные сэндвичи и
-              разнообразные напитки, включая освежающие лимонады и коктейли
+            <p className="mt-6 text-lg leading-8 text-gray-300 px-8">
+              <Balance>
+                У нас вы найдете более 10 различных видов пиццы, которые вы
+                можете приобрести по кусочкам (слайсам), а также сочные сэндвичи
+                и разнообразные напитки, включая освежающие лимонады и коктейли
+              </Balance>
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link

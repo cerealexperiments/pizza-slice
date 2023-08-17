@@ -1,7 +1,7 @@
 import { client, urlFor } from "@/lib/sanity";
-import { Pizza, PizzaSize, Product, ProductCategory } from "@/lib/types";
+import { Category, Pizza, PizzaSize, Product } from "@/lib/types";
 
-type PizzaType = Omit<Pizza, "slug"> & { slug: { current: string } };
+export type PizzaType = Omit<Pizza, "slug"> & { slug: { current: string } };
 
 type ProductType = Omit<Product, "slug"> & { slug: { current: string } };
 
@@ -25,7 +25,16 @@ export const getProductsByCategory = async (category: string) => {
 };
 
 export const getProductCategories = async () => {
-  return await client.fetch<ProductCategory[]>(`*[_type == "productType"]`);
+  const response = await client.fetch<Category[]>(
+    `*[_type == "productType"] | order(_createdAt asc)`
+  );
+  return response.map((item) => {
+    return {
+      title: item.title,
+      value: item.value,
+      image: urlFor(item.image).url(),
+    };
+  });
 };
 
 export const getFeaturedProducts = async () => {

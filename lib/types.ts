@@ -3,6 +3,12 @@ export type ProductCategory = {
   value: string;
 };
 
+export type Category = {
+  title: string;
+  value: string;
+  image: string;
+};
+
 export type PizzaSize = {
   sizeTitle: string;
   sizePrice: number;

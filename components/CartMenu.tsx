@@ -70,22 +70,19 @@ export default function CartMenu() {
                           {product.price * product.quantity} сом
                         </p>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500 w-4/5">
+                      <p className="mt-1 text-sm text-gray-500 max-w-[80%]">
                         {product.description}
                       </p>
                     </div>
 
-                    <div className="mt-4 flex flex-1 items-end justify-between">
+                    <div className="mt-4 flex flex-wrap gap-2 flex-1 items-end justify-between">
                       <div className="flex items-center space-x-2 text-sm text-gray-700">
                         <div className="flex items-center gap-2">
                           <span>Количество: </span>
                           <div className="flex border py-0.5 gap-1 items-center">
                             <button
                               onClick={() =>
-                                changeProductQuantity(
-                                  product,
-                                  product.quantity - 1
-                                )
+                                changeProductQuantity(product, "decrease")
                               }
                               className="px-1.5 flex-1 border-r"
                             >
@@ -96,10 +93,7 @@ export default function CartMenu() {
                             </span>
                             <button
                               onClick={() => {
-                                changeProductQuantity(
-                                  product,
-                                  product.quantity + 1
-                                );
+                                changeProductQuantity(product, "increase");
                               }}
                               className="px-1.5 flex-1 border-l"
                             >
@@ -108,15 +102,13 @@ export default function CartMenu() {
                           </div>
                         </div>
                       </div>
-                      <div className="ml-4">
-                        <button
-                          type="button"
-                          onClick={() => removeProduct(product)}
-                          className="text-sm font-medium text-rose-500 hover:text-rose-600 transition-colors"
-                        >
-                          <span>Удалить</span>
-                        </button>
-                      </div>
+                      <button
+                        type="button"
+                        onClick={() => removeProduct(product)}
+                        className="text-sm self-center font-medium text-rose-500 hover:text-rose-600 transition-colors"
+                      >
+                        Удалить
+                      </button>
                     </div>
                   </div>
                 </li>

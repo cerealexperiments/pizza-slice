@@ -48,11 +48,13 @@ export default function Example() {
                   key={product.slug}
                   className="flex items-start space-x-4 py-6"
                 >
-                  <img
-                    src={product.image}
-                    alt={product.image}
-                    className="h-20 w-20 flex-none rounded-md object-cover object-center"
-                  />
+                  <div className="p-1.5 border bg-white rounded-md">
+                    <img
+                      src={product.image}
+                      alt={product.image}
+                      className="h-20 w-20  flex-none rounded-md object-cover object-center"
+                    />
+                  </div>
                   <div className="flex-auto space-y-1">
                     <h3>{product.title}</h3>
                     {product.size && (

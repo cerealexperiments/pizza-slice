@@ -5,7 +5,10 @@ type ProductsStore = {
   products: CartProduct[];
   addProduct: (product: CartProduct) => void;
   removeProduct: (product: CartProduct) => void;
-  changeProductQuantity: (product: CartProduct, quantity: number) => void;
+  changeProductQuantity: (
+    product: CartProduct,
+    operation: "increase" | "decrease"
+  ) => void;
 };
 
 export const useStore = create<ProductsStore>((set) => ({
@@ -27,13 +30,16 @@ export const useStore = create<ProductsStore>((set) => ({
       };
     });
   },
-  changeProductQuantity: (product, quantity) => {
+  changeProductQuantity: (product, operation: "increase" | "decrease") => {
     set((state) => {
       const foundProduct = state.products.find(
         (item) => item.slug === product.slug
       );
-      foundProduct.quantity = quantity;
-
+      if (operation === "increase") {
+        foundProduct.quantity += 1;
+      } else if (operation === "decrease" && foundProduct.quantity > 1) {
+        foundProduct.quantity -= 1;
+      }
       return { products: [...state.products] };
     });
   },

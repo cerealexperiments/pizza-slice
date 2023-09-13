@@ -1,10 +1,10 @@
-import PizzaCardSkeleton from "@/components/PIzzaCardSkeleton";
-import { Product } from "@/lib/types";
+import PizzaCardSkeleton from "@/components/PizzaCardSkeleton";
+import { Product, Pizza } from "@/lib/types";
 import ProductCard from "@/components/ProductCard";
 
 type ProductsListProps = {
   isLoading: boolean;
-  products: Product[] | null;
+  products: Product[] | Pizza[] | null;
 };
 
 const skeletons = Array.from({ length: 8 }, (_, index) => (
@@ -22,14 +22,7 @@ export default function ProductsList({
         : products
         ? products.map((product) => (
             <ProductCard
-              key={product.title}
-              slug={product.slug}
-              title={product.title}
-              image={product.image}
-              description={
-                product.description ? product.description : "Нет описания"
-              }
-              price={product.price}
+							product={product}
             />
           ))
         : null}

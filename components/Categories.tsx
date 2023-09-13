@@ -4,11 +4,11 @@ import { Category } from "@/lib/types";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 
-type Categories2Props = {
+type CategoriesProps = {
   categories: Category[] | null;
 };
 
-export default function Categories2({ categories }: Categories2Props) {
+export default function Categories({ categories }: CategoriesProps) {
   if (categories === null) {
     return <div>loading</div>;
   }

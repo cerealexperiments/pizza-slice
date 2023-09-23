@@ -44,7 +44,7 @@ export default function CartMenu() {
               className="divide-y divide-gray-200 border-b border-t border-gray-200"
             >
               {products.map((product) => (
-                <CartProduct product={product} />
+                <CartProduct key={product.slug} product={product} />
               ))}
             </ul>
             <div className="border-t mt-auto border-gray-200 px-4 py-6 sm:px-6">

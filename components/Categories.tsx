@@ -20,7 +20,7 @@ export default function Categories({ categories }: CategoriesProps) {
     >
       <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
         <h2 className="text-2xl font-bold leading-[1.1] text-gray-800 sm:text-3xl md:text-4xl">
-          Категории
+          Меню
         </h2>
         <Balance className="max-w-[46rem] leading-normal text-gray-800 text-muted-foreground sm:text-lg sm:leading-7">
           Наше главное преимущество – разнообразие (чего...)
@@ -31,7 +31,7 @@ export default function Categories({ categories }: CategoriesProps) {
           <Link
             aria-label={`Go to ${category.title}`}
             key={category.title}
-            href={`/menu?category=${category.value}`}
+            href={`/menu2?category=${category.value}`}
           >
             <div className="group relative overflow-hidden rounded-md">
               <AspectRatio ratio={4 / 5}>

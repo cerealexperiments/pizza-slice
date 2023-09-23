@@ -20,11 +20,7 @@ export default function ProductsList({
       {isLoading
         ? skeletons
         : products
-        ? products.map((product) => (
-            <ProductCard
-							product={product}
-            />
-          ))
+        ? products.map((product) => <ProductCard key={product.slug} product={product} />)
         : null}
     </div>
   );

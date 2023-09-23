@@ -10,7 +10,7 @@ export default function Example() {
   const productsTotal = cartProducts.reduce(
     (accumulator, currentItem) =>
       accumulator + currentItem.price * currentItem.quantity,
-    0
+    0,
   );
   const total = productsTotal + shipping;
   return (

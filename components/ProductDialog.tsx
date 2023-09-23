@@ -8,6 +8,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Product } from "@/lib/types";
 import { useStore } from "@/state/store";
+import Image from "next/image";
+import defaultImage from "../public/default.png";
 
 export default function ProductDialog({
   slug,
@@ -25,7 +27,14 @@ export default function ProductDialog({
       </DialogTrigger>
       <DialogContent className="w-fit px-12 sm:px-6 sm:grid sm:grid-cols-2 gap-12 w-[90vw] max-w-3xl">
         <div className="flex-1 flex items-center max-w-[300px] mx-auto">
-          <img src={image} alt="" />
+          <Image
+            className="aspect-square"
+            width={500}
+            height={500}
+            placeholder={defaultImage}
+            src={image}
+            alt=""
+          />
         </div>
         <div className="flex flex-col">
           <DialogTitle className="mb-2 text-2xl font-medium tracking-tight">

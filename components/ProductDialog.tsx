@@ -16,6 +16,7 @@ export default function ProductDialog({
   image,
   title,
   price,
+  weight,
   description = "nothing",
 }: Product) {
   const { products, addProduct } = useStore((state) => state);
@@ -40,12 +41,18 @@ export default function ProductDialog({
           <DialogTitle className="mb-2 text-2xl font-medium tracking-tight">
             {title}
           </DialogTitle>
-          <DialogDescription className="mb-4">{description}</DialogDescription>
-          <div className="mt-auto flex justify-between items-center">
+          <DialogDescription className="mb-4 mt-auto">
+            {description}
+          </DialogDescription>
+          <p className="mt-auto text-gray-600 text-sm pb-4 flex items-center">
+            Вес: {weight} г.
+          </p>
+          <div className="flex justify-between items-center">
             <Button
               onClick={() =>
                 !added
                   ? addProduct({
+                      weight,
                       slug,
                       title,
                       image,

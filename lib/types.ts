@@ -20,6 +20,7 @@ export type Product = {
   image: string;
   description?: string;
   price: number;
+  weight: number;
 };
 
 export type Pizza = Omit<Product, "price"> & {

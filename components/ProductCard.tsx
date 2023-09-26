@@ -21,7 +21,10 @@ type ProductCardProps = {
 export default function ProductCard({ product }: ProductCardProps) {
   const { products, addProduct } = useStore((state) => state);
   const added = !!products.find((item) => item.slug === product.slug);
-  const price = "price" in product ? product.price : product.sizes[0].sizePrice;
+  const price =
+    "price" in product && product.price
+      ? product.price
+      : product.sizes[0].sizePrice;
   return (
     <Card className="max-w-[350px] pt-4 xl:max-w-[290px] border-0 rounded flex flex-col">
       <CardContent>
@@ -43,7 +46,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className="font-normal">от</span> {price} с.
         </p>
         <div className="flex justify-between w-full">
-          {"price" in product ? (
+          {"price" in product && product.price ? (
             <ProductDialog
               slug={product.slug}
               title={product.title}
@@ -52,6 +55,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               description={
                 product.description ? product.description : "something"
               }
+              weight={product.weight}
             />
           ) : (
             <PizzaDialog
@@ -61,19 +65,21 @@ export default function ProductCard({ product }: ProductCardProps) {
               sizes={product.sizes}
               description={product.description}
               ingredients={product.ingredients}
+              weight={product.weight}
             />
           )}
           <Button
             onClick={() =>
               !added
                 ? addProduct({
+                    weight: product.weight,
                     slug: product.slug,
                     title: product.title,
                     image: product.image,
                     description: product.description,
                     price: price,
                     size:
-                      "sizes" in product
+                      "sizes" in product && product.sizes !== null
                         ? product.sizes[0].sizeTitle
                         : undefined,
                     quantity: 1,

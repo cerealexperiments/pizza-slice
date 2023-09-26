@@ -16,7 +16,7 @@ export default function Categories({ categories }: CategoriesProps) {
     <section
       id="categories"
       aria-labelledby="categories-heading"
-      className="space-y-6 py-6 md:pt-10 lg:pt-24"
+      className="space-y-6 pb-12"
     >
       <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
         <h2 className="text-2xl font-bold leading-[1.1] text-gray-800 sm:text-3xl md:text-4xl">
@@ -33,7 +33,7 @@ export default function Categories({ categories }: CategoriesProps) {
             key={category.title}
             href={`/menu2?category=${category.value}`}
           >
-            <div className="group relative overflow-hidden rounded-md">
+            <div className="group flex justify-center align-center max-w-md aspect-[5/4] sm:aspect-square mx-auto relative overflow-hidden rounded-md">
               <AspectRatio ratio={4 / 5}>
                 <div className="absolute inset-0 z-10 bg-black/60 transition-colors group-hover:bg-black/70" />
                 <Image

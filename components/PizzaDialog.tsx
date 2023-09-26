@@ -26,6 +26,7 @@ export default function PizzaDialog({
   title,
   sizes,
   ingredients,
+  weight,
 }: Pizza) {
   const { products, addProduct } = useStore((state) => state);
   const added = !!products.find((item) => item.slug === slug);
@@ -53,7 +54,7 @@ export default function PizzaDialog({
             onValueChange={(value) => {
               setSelectedSize(value);
               const foundIndex = sizes.findIndex(
-                (item) => item.sizeTitle === value,
+                (item) => item.sizeTitle === value
               );
               setSelectedSizeIndex(foundIndex);
             }}
@@ -81,7 +82,7 @@ export default function PizzaDialog({
                     setExcludedIngredients((prev) => [...prev, item]);
                   } else {
                     setExcludedIngredients((prev) =>
-                      prev.filter((ingredient) => ingredient !== item),
+                      prev.filter((ingredient) => ingredient !== item)
                     );
                   }
                 }}
@@ -92,7 +93,10 @@ export default function PizzaDialog({
               </Toggle>
             ))}
           </div>
-          <div className="mt-6 flex gap-4 justify-between items-center">
+          <p className="mt-6 text-gray-600 text-sm pb-4 flex items-center">
+            Вес: {weight} г.
+          </p>
+          <div className="flex gap-4 justify-between items-center">
             <Button
               onClick={() =>
                 !added

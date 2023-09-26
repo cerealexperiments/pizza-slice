@@ -16,11 +16,13 @@ export default function ProductsList({
   products,
 }: ProductsListProps) {
   return (
-    <div className="py-8  mx-auto flex flex-wrap justify-center xl:justify-start gap-7 gap-y-8 md:mx-none">
+    <div className="py-8 mx-auto flex flex-wrap justify-center xl:justify-start gap-7 gap-y-8 md:mx-none">
       {isLoading
         ? skeletons
         : products
-        ? products.map((product) => <ProductCard key={product.slug} product={product} />)
+        ? products.map((product) => (
+            <ProductCard key={product.slug} product={product} />
+          ))
         : null}
     </div>
   );

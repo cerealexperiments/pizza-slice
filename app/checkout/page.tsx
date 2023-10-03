@@ -1,18 +1,38 @@
 "use client";
 import { Fragment } from "react";
+import { useRouter } from "next/navigation";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import { useStore } from "@/state/store";
+import { useForm } from "react-hook-form";
+import ky from "ky";
 
-export default function Example() {
+export default function CheckoutPage() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const router = useRouter();
   const cartProducts = useStore((state) => state.products);
   const shipping = 200;
   const productsTotal = cartProducts.reduce(
     (accumulator, currentItem) =>
       accumulator + currentItem.price * currentItem.quantity,
-    0,
+    0
   );
   const total = productsTotal + shipping;
+  const onSubmit = async (data) => {
+    if (cartProducts.length === 0) {
+      return;
+    }
+    const response = await ky.post("/api/email", {
+      json: { ...data, products: cartProducts, total },
+    });
+    if (response.ok) {
+      router.push("/");
+    }
+  };
   return (
     <div className="bg-white relative flex-1">
       <div
@@ -145,7 +165,10 @@ export default function Example() {
           </div>
         </section>
 
-        <form className="px-4 pb-36 pt-16 sm:px-6 lg:col-start-1 lg:row-start-1 lg:px-0 lg:pb-16">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="px-4 pb-36 pt-16 sm:px-6 lg:col-start-1 lg:row-start-1 lg:px-0 lg:pb-16"
+        >
           <div className="mx-auto max-w-lg lg:max-w-none">
             <section aria-labelledby="contact-info-heading">
               <h2
@@ -163,6 +186,7 @@ export default function Example() {
                 </label>
                 <div className="mt-1">
                   <input
+                    {...register("name")}
                     type="text"
                     id="name"
                     name="name"
@@ -174,17 +198,36 @@ export default function Example() {
 
               <div className="mt-6">
                 <label
-                  htmlFor="email-address"
+                  htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
                   Email
                 </label>
                 <div className="mt-1">
                   <input
+                    {...register("email")}
                     type="email"
-                    id="email-address"
-                    name="email-address"
+                    id="email"
+                    name="email"
                     autoComplete="email"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+              <div className="mt-6">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Телефонный номер
+                </label>
+                <div className="mt-1">
+                  <input
+                    {...register("phone")}
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    autoComplete="phone"
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
                 </div>
@@ -209,6 +252,7 @@ export default function Example() {
                   </label>
                   <div className="mt-1">
                     <input
+                      {...register("address")}
                       type="text"
                       id="address"
                       name="address"
@@ -227,6 +271,7 @@ export default function Example() {
                   </label>
                   <div className="mt-1">
                     <input
+                      {...register("addressDetails")}
                       type="text"
                       id="apartment"
                       name="apartment"
@@ -242,7 +287,7 @@ export default function Example() {
                 type="submit"
                 className="w-full rounded-md border border-transparent bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:order-last sm:ml-6 sm:w-auto"
               >
-                Продолжить
+                Заказать
               </button>
               <p className="mt-4 text-center text-sm text-gray-500 sm:mt-0 sm:text-left">
                 Оплата производится после получения заказа.

@@ -26,11 +26,11 @@ export default function ProductCard({ product }: ProductCardProps) {
       ? product.price
       : product.sizes[0].sizePrice;
   return (
-    <Card className="max-w-[350px] pt-4 xl:max-w-[290px] border-0 rounded flex flex-col">
+    <Card className="max-w-[350px] pt-4 xl:max-w-[290px] overflow-hidden border-0 rounded flex flex-col">
       <CardContent>
         <Image
           width={500}
-          className="w-full max-w-[300px] aspect-square"
+          className="w-full border border-gray-200 scale-110 overflow-hidden aspect-square"
           placeholder={defaultImage}
           height={500}
           src={product.image}

@@ -5,22 +5,9 @@ export type PizzaResponse = Omit<Pizza, "slug"> & { slug: { current: string } };
 
 type ProductResponse = Omit<Product, "slug"> & { slug: { current: string } };
 
-type FeaturedProduct = {
-  product: {
-    slug: {
-      current: string;
-    };
-    title: string;
-    price?: number;
-    image: string;
-    description: string;
-    sizes?: PizzaSize[];
-  };
-};
-
 export const getProductsByCategory = async (category: string) => {
   const response = await client.fetch<ProductResponse[] | PizzaResponse[]>(
-    `*[_type == "${category}"]`
+    `*[_type == "${category}"]`,
   );
   if (category === "pizza") {
     return (response as PizzaResponse[]).map((item) => ({
@@ -39,7 +26,7 @@ export const getProductsByCategory = async (category: string) => {
 export const getAllProducts = async (productTypes: string[]) => {
   const productTypesString = productTypes.map((item) => `"${item}"`).join(", ");
   const response = await client.fetch<Array<ProductResponse | PizzaResponse>>(
-    `*[_type in [${productTypesString}]] | order(_type)`
+    `*[_type in [${productTypesString}]] | order(_type)`,
   );
   return response.map((item) => {
     return {
@@ -52,7 +39,7 @@ export const getAllProducts = async (productTypes: string[]) => {
 
 export const getProductCategories = async () => {
   const response = await client.fetch<Category[]>(
-    `*[_type == "productType"] | order(_createdAt asc)`
+    `*[_type == "productType"] | order(_createdAt asc)`,
   );
   return response.map((item) => {
     return {
@@ -61,6 +48,34 @@ export const getProductCategories = async () => {
       image: urlFor(item.image).url(),
     };
   });
+};
+
+export const getAllDeals = async () => {
+  const response = await client.fetch<DealResponse[]>(`*[_type == "deal"]`);
+  return response.map(item => {
+    return {
+      title: item.title,
+      slug: item.slug.current,
+      description: item.description,
+      image: urlFor(item.image).url()
+    }
+  })
+};
+
+type DealResponse = {
+  title: string,
+  image: string;
+  slug: {
+    current: string
+  },
+  description: string
+}
+
+export type Deal = {
+  title: string;
+  image: string;
+  description: string;
+  slug: string;
 };
 
 type FeaturedResponse = {
@@ -80,7 +95,7 @@ export const getFeaturedProducts = async () => {
       "    slug,\n" +
       "    weight,\n" +
       "  }\n" +
-      "}"
+      "}",
   );
   return response.map((item) => {
     return {

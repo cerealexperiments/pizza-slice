@@ -22,7 +22,7 @@ export default function Hero() {
             }}
           />
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+        <div className="mx-auto max-w-2xl py-24 sm:py-36 lg:py-48">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl px-8">
               <Balance>Добро пожаловать в Pizza Slice</Balance>

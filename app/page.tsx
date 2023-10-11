@@ -38,7 +38,7 @@ export default function Home() {
         <Balance className="max-w-[46rem] pb-4 leading-normal text-gray-800 text-muted-foreground sm:text-lg sm:leading-7">
           Наше главное преимущество – разнообразие (чего...) (change later)
         </Balance>
-        {dealsQuery.data.map(item => <ComboCard slug={item.slug} title={item.title} description={item.description} image={item.image}/>)}
+        {dealsQuery.data.map(item => <ComboCard key={item.slug} slug={item.slug} title={item.title} description={item.description} image={item.image}/>)}
       </div>}
     </div>
   );

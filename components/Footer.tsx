@@ -3,7 +3,7 @@ import React, { SVGProps } from "react";
 const navigation = {
   main: [
     { name: "О нас", href: "/info/about" },
-    { name: "Доставка", href: "/info/shipping" },
+    { name: "Доставка", href: "/info/delivery" },
     { name: "Контакты", href: "/info/contacts" },
   ],
   social: [

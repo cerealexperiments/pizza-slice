@@ -52,24 +52,24 @@ export const getProductCategories = async () => {
 
 export const getAllDeals = async () => {
   const response = await client.fetch<DealResponse[]>(`*[_type == "deal"]`);
-  return response.map(item => {
+  return response.map((item) => {
     return {
       title: item.title,
       slug: item.slug.current,
       description: item.description,
-      image: urlFor(item.image).url()
-    }
-  })
+      image: urlFor(item.image).url(),
+    };
+  });
 };
 
 type DealResponse = {
-  title: string,
+  title: string;
   image: string;
   slug: {
-    current: string
-  },
-  description: string
-}
+    current: string;
+  };
+  description: string;
+};
 
 export type Deal = {
   title: string;

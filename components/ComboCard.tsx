@@ -8,17 +8,21 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import defaultImage from "../public/default.png";
-import { Button } from "@/components/ui/button";
 import ComboDialog from "./ComboDialog";
 
 type ComboCardProps = {
-  image: string,
-  description: string,
-  title: string,
-  slug: string,
+  image: string;
+  description: string;
+  title: string;
+  slug: string;
 };
 
-export default function ComboCard({ image, description, title, slug }: ComboCardProps) {
+export default function ComboCard({
+  image,
+  description,
+  title,
+  slug,
+}: ComboCardProps) {
   return (
     <Card className="max-w-[350px] pt-4 xl:max-w-[290px] overflow-hidden border-0 rounded flex flex-col">
       <CardContent>
@@ -37,11 +41,7 @@ export default function ComboCard({ image, description, title, slug }: ComboCard
       </CardHeader>
       <CardFooter className="mt-auto flex-col items-start">
         <div className="flex justify-center w-full">
-            <ComboDialog
-              title={title}
-              image={image}
-              description={description}
-            />
+          <ComboDialog title={title} image={image} description={description} />
         </div>
       </CardFooter>
     </Card>

@@ -21,11 +21,11 @@ export default function MenuPage() {
   const productCategoriesQuery = useProductCategories();
   const productCategories = productCategoriesQuery.data;
   const productsQuery = useSWR(productCategories ? "all products" : null, () =>
-    getAllProducts(productCategories!.map((item) => item.value))
+    getAllProducts(productCategories!.map((item) => item.value)),
   );
   const featuredProductsQuery = useSWR(
     "featured products",
-    getFeaturedProducts
+    getFeaturedProducts,
   );
   const products =
     categoryFilter !== "all"

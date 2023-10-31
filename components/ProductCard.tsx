@@ -13,12 +13,14 @@ import { useStore } from "@/state/store";
 import { Pizza, Product } from "@/lib/types";
 import ProductDialog from "./ProductDialog";
 import PizzaDialog from "./PizzaDialog";
+import { useToast } from "./ui/use-toast";
 
 type ProductCardProps = {
   product: Pizza | Product;
 };
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const { toast } = useToast();
   const { products, addProduct } = useStore((state) => state);
   const added = !!products.find((item) => item.slug === product.slug);
   const price =
@@ -69,23 +71,26 @@ export default function ProductCard({ product }: ProductCardProps) {
             />
           )}
           <Button
-            onClick={() =>
-              !added
-                ? addProduct({
-                    weight: product.weight,
-                    slug: product.slug,
-                    title: product.title,
-                    image: product.image,
-                    description: product.description,
-                    price: price,
-                    size:
-                      "sizes" in product && product.sizes !== null
-                        ? product.sizes[0].sizeTitle
-                        : undefined,
-                    quantity: 1,
-                  })
-                : console.log("product already added")
-            }
+            onClick={() => {
+              if (!added) {
+                addProduct({
+                  weight: product.weight,
+                  slug: product.slug,
+                  title: product.title,
+                  image: product.image,
+                  description: product.description,
+                  price: price,
+                  size:
+                    "sizes" in product && product.sizes !== null
+                      ? product.sizes[0].sizeTitle
+                      : undefined,
+                  quantity: 1,
+                });
+                toast({ title: "Продукт добавлен в корзину" });
+              } else {
+                toast({ title: "Продукт уже был добавлен в корзину" });
+              }
+            }}
             className="bg-rose-500 hover:bg-rose-600"
             disabled={added}
           >

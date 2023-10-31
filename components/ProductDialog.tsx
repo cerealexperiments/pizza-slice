@@ -10,6 +10,7 @@ import { Product } from "@/lib/types";
 import { useStore } from "@/state/store";
 import Image from "next/image";
 import defaultImage from "../public/default.png";
+import { useToast } from "./ui/use-toast";
 
 export default function ProductDialog({
   slug,
@@ -21,6 +22,7 @@ export default function ProductDialog({
 }: Product) {
   const { products, addProduct } = useStore((state) => state);
   const added = !!products.find((item) => item.slug === slug);
+  const { toast } = useToast();
   return (
     <Dialog>
       <DialogTrigger className="text-gray-700 border rounded-md hover:bg-gray-50 transition-colors text-sm font-medium px-4 py-1.5">
@@ -49,19 +51,23 @@ export default function ProductDialog({
           </p>
           <div className="flex justify-between items-center">
             <Button
-              onClick={() =>
-                !added
-                  ? addProduct({
-                      weight,
-                      slug,
-                      title,
-                      image,
-                      description,
-                      price,
-                      quantity: 1,
-                    })
-                  : console.log("product already added")
-              }
+              onClick={() => {
+                if (!added) {
+                  addProduct({
+                    weight,
+                    slug,
+                    title,
+                    image,
+                    description,
+                    price,
+                    quantity: 1,
+                  });
+                  console.log("nigger");
+                  toast({ title: "Продукт добавлен в корзину" });
+                } else {
+                  toast({ title: "Продукт уже был добавлен в корзину" });
+                }
+              }}
               className="bg-rose-500 hover:bg-rose-600 w-full max-w-[200px]"
               disabled={added}
             >

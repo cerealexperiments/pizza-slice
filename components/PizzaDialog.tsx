@@ -18,6 +18,7 @@ import {
 import { Toggle } from "@/components/ui/toggle";
 import { useStore } from "@/state/store";
 import { useState } from "react";
+import { useToast } from "./ui/use-toast";
 
 export default function PizzaDialog({
   slug,
@@ -34,6 +35,7 @@ export default function PizzaDialog({
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [excludedIngredients, setExcludedIngredients] = useState<string[]>([]);
   const price = sizes[selectedSizeIndex].sizePrice;
+  const { toast } = useToast();
   return (
     <Dialog>
       <DialogTrigger className="text-gray-700 border rounded-md hover:bg-gray-50 transition-colors text-sm font-medium px-4 py-1.5">
@@ -54,7 +56,7 @@ export default function PizzaDialog({
             onValueChange={(value) => {
               setSelectedSize(value);
               const foundIndex = sizes.findIndex(
-                (item) => item.sizeTitle === value
+                (item) => item.sizeTitle === value,
               );
               setSelectedSizeIndex(foundIndex);
             }}
@@ -82,7 +84,7 @@ export default function PizzaDialog({
                     setExcludedIngredients((prev) => [...prev, item]);
                   } else {
                     setExcludedIngredients((prev) =>
-                      prev.filter((ingredient) => ingredient !== item)
+                      prev.filter((ingredient) => ingredient !== item),
                     );
                   }
                 }}
@@ -98,19 +100,23 @@ export default function PizzaDialog({
           </p>
           <div className="flex gap-4 justify-between items-center">
             <Button
-              onClick={() =>
-                !added
-                  ? addProduct({
-                      slug,
-                      title,
-                      image,
-                      description,
-                      price: price,
-                      size: selectedSize,
-                      quantity: 1,
-                    })
-                  : console.log("product already added")
-              }
+              onClick={() => {
+                if (!added) {
+                  addProduct({
+                    weight: 0,
+                    slug,
+                    title,
+                    image,
+                    description,
+                    price: price,
+                    size: selectedSize,
+                    quantity: 1,
+                  });
+                  toast({ title: "Продукт был добавлен в корзину" });
+                } else {
+                  console.log("nigger");
+                }
+              }}
               className="bg-rose-500 hover:bg-rose-600 w-full max-w-[200px]"
               disabled={added}
             >

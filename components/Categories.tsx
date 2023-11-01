@@ -16,7 +16,7 @@ export default function Categories({ categories }: CategoriesProps) {
     <section
       id="categories"
       aria-labelledby="categories-heading"
-      className="space-y-6 pb-12"
+      className="space-y-6 py-24"
     >
       <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
         <h2 className="text-2xl font-bold leading-[1.1] text-gray-800 sm:text-3xl md:text-4xl">

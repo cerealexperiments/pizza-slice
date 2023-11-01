@@ -60,7 +60,7 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t">
+    <footer className="bg-gray-50 border-t">
       <div className="mx-auto max-w-screen-xl overflow-hidden px-6 py-12 sm:py-16 lg:px-8">
         <nav
           className="-mb-6 columns-1 sm:flex sm:justify-center sm:space-x-12"

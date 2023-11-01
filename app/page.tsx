@@ -27,12 +27,12 @@ export default function Home() {
     <div>
       <Hero />
       {productCategoriesQuery.data && (
-        <div className="max-w-screen-xl pt-24 mx-auto px-8 xl:px-0">
+        <div className="max-w-screen-xl mx-auto px-8 xl:px-0">
           <Categories categories={productCategories} />
         </div>
       )}
-      <Testimonials />
       <CombosAndDeals />
+      <Testimonials />
     </div>
   );
 }

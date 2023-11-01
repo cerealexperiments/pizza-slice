@@ -6,9 +6,9 @@ import ComboCard from "./ComboCard";
 export default function CombosAndDeals() {
   const dealsQuery = useSWR("combos", getAllDeals);
   return (
-    <section>
+    <section className="bg-gray-50">
       {dealsQuery.data && (
-        <div className="max-w-screen-xl pb-24 mx-auto px-8 text-center">
+        <div className="max-w-screen-xl py-12 mx-auto px-8 text-center">
           <h2 className="text-2xl font-bold leading-[1.1] text-gray-800 sm:text-3xl md:text-4xl">
             Комбо и акции
           </h2>

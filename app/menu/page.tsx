@@ -1,7 +1,7 @@
 "use client";
 import useSWR from "swr";
 import { getAllProducts, getFeaturedProducts } from "@/lib/data";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ProductsList from "@/components/ProductsList";
 import { useSearchParams } from "next/navigation";
 import useProductCategories from "../hooks/useProductCategories";

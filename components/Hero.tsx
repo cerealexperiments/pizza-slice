@@ -29,7 +29,7 @@ export default function Hero() {
             </h1>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
-                href="/menu2"
+                href="/menu"
                 className="rounded-md transition-colors bg-rose-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
               >
                 Перейти к меню

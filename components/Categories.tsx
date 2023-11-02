@@ -31,7 +31,7 @@ export default function Categories({ categories }: CategoriesProps) {
           <Link
             aria-label={`Go to ${category.title}`}
             key={category.title}
-            href={`/menu2?category=${category.value}`}
+            href={`/menu?category=${category.value}`}
           >
             <div className="group flex justify-center align-center max-w-md aspect-[5/4] sm:aspect-square mx-auto relative overflow-hidden rounded-md">
               <AspectRatio ratio={4 / 5}>
